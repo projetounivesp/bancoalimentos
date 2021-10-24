@@ -7,16 +7,16 @@ nomeproduto varchar(100) not null
 
 create table estoque(
 idestoque int primary key auto_increment,
-idproduto int not null unique,
+identrada int not null unique,
 quantidade int not null
 );
 
-
-create table validade(
-idvalidade int primary key auto_increment,
+identrada int auto_increment primary key,
 idproduto int not null,
-quantidade int not null
+dataentrada timestamp default current_timestamp(),
+datavalidade date not null
 );
+
 
 
 create table doacao(
@@ -57,3 +57,19 @@ ALTER TABLE `bancoalimentos`.`retirada`
 ADD CONSTRAINT `fk_retirada_pk_produto`
   FOREIGN KEY (`idproduto`)
   REFERENCES `bancoalimentos`.`produto` (`idproduto`);
+
+
+ALTER TABLE `bancoalimentos`.`entrada` 
+ADD CONSTRAINT `fk_entrada_pk_produto`
+  FOREIGN KEY (`idproduto`)
+  REFERENCES `bancoalimentos`.`produto` (`idproduto`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+
+ALTER TABLE `bancoalimentos`.`estoque` 
+ADD CONSTRAINT `fk_estoque_pk_entrada`
+  FOREIGN KEY (`identrada`)
+  REFERENCES `bancoalimentos`.`entrada` (`identrada`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
