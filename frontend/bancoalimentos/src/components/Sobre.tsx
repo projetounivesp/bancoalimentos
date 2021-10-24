@@ -10,6 +10,10 @@ export default function Header(){
             <div className="ali-doados-in">dados de bloco e apto</div>
             <div className="ali-retiradas-24"></div>
             <div className="ali-retiradas-in"></div>
+        <div>
+            Mais informações no rodapé da página
         </div>
+        </div>
+
     )
 }
