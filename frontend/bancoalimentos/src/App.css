@@ -36,3 +36,89 @@
     transform: rotate(360deg);
   }
 }
+
+
+.title{
+  text-align: left;
+  font-size: 15pt!important;
+  margin-left: 10px;
+  color: #666;
+}
+
+.ali-doados-24,
+.ali-doados-in,
+.ali-retiradas-24,
+.ali-retiradas-in{
+  width:24vw;
+  height:5vh;
+  padding: 10px;
+  margin: 5px;
+}
+.ali-doados-24{
+  background-color: rgb(0,163,186);
+}
+.ali-doados-in{
+  background-color: rgb(0, 169, 58);
+}
+.ali-retiradas-24{
+  background-color: rgb(255, 194, 0);
+}
+.ali-retiradas-in{
+  background-color: rgb(255,50,68);
+}
+
+.area{
+  display: flex;
+  flex-direction: row;
+}
+
+.content{
+  padding:10px;
+  width:70vw;
+  height: 50vh;
+  border: silver 1px solid;
+  margin: 5px;
+}
+.display-title{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.left{
+  flex: 1;
+  text-align: left;
+}
+
+
+.display{
+  display: flex;
+  flex-direction: row;
+}
+
+.buttons{
+  padding:10px;
+  width:30vw;
+  height: 50vh;
+  border: silver 1px solid;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ret-doa{
+  flex: 1;
+  margin:10px 0px;
+}
+.ret-doa{
+  flex: 1;
+  margin:10px 0px;
+}
+.ret-doa{
+  flex: 1;
+  margin:10px 0px;
+}
+.sobre{
+  flex: 1;
+  margin: 10px 0px;
+}
