@@ -4,9 +4,9 @@ import traceback
 import pymysql
 
 class Produto:
-    def __init__(self, idproduto=None, nome=None):
+    def __init__(self, idproduto=None, nomeproduto=None):
         self.idproduto = idproduto
-        self.nome = nome
+        self.nomeproduto = nomeproduto
         
         self.conn = pymysql.connect(host='localhost',
                              user='root',
@@ -19,7 +19,7 @@ class Produto:
         try:
             with self.conn.cursor() as cur:
                 sql = "INSERT INTO `produto`(`nomeproduto`)VALUES(%s)"
-                cur.execute(sql,(self.nome))
+                cur.execute(sql,(self.nomeproduto))
                 self.conn.commit()
         except:
             print("Erro ao tentar cadastrar os dados")
