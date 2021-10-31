@@ -3,6 +3,7 @@ import traceback
 
 import pymysql
 
+
 class Doacao:
     def __init__(self, idproduto=None, iddoador=None, quantidade=None, datadoacao=None):
         self.idproduto = idproduto
@@ -11,24 +12,25 @@ class Doacao:
         self.datadoacao = datadoacao
 
         self.conn = pymysql.connect(host='localhost',
-                            user='root',
-                            password='',
-                            database='bancoalimentos',
-                            charset='uft8mb4'
-                            cursorclass=pymysql.cursors.DictCursor)
-        
+                                    user='root',
+                                    password='',
+                                    database='bancoalimentos',
+                                    charset='utf8mb4',
+                                    cursorclass=pymysql.cursors.DictCursor)
+
     def cadastroDoacao(self):
         try:
             with self.conn.cursor() as cur:
                 sql = "INSERT INTO 'doacao' ('idproduto', 'iddoador', 'quantidade', 'datadoacao') VALUES(%s, %s, %i, %s)"
-                cur.execute(sql,(self.idproduto, self.iddoador, self.quantidade, self.datadoacao))
+                cur.execute(sql, (self.idproduto, self.iddoador,
+                            self.quantidade, self.datadoacao))
                 self.conn.commit()
             except:
                 print("Erro ao tentar cadastrar os dados")
                 traceback.print_exc()
             finally:
                 self.conn.close()
-    
+
     def listarDoacao(self):
         try:
             with self.conn.cursor() as cur:
@@ -39,5 +41,3 @@ class Doacao:
             print("Erro ao tentar listar doacoes")
         finally:
             self.conn.close()
-            
-        
