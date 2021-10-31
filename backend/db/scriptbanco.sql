@@ -11,6 +11,7 @@ identrada int not null unique,
 quantidade int not null
 );
 
+create table entrada(
 identrada int auto_increment primary key,
 idproduto int not null,
 dataentrada timestamp default current_timestamp(),
