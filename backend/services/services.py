@@ -2,9 +2,13 @@ from flask import json
 from flask.json import jsonify
 from flask import Flask, request
 from domain.doador import Doador
+<<<<<<< HEAD
 from domain.doacao import Doacao
 
+=======
+>>>>>>> 2a4180095fc65c41d5abeefb66f3896ced22b835
 from domain.produto import Produto
+
 
 def runApplication():
     app = Flask(__name__)
@@ -20,7 +24,7 @@ def runApplication():
     @app.route('/api/v1/produto/cadastro',methods=['POST'])
     def cadastroproduto():
         dados = request.get_json()
-        id = dados['idproduto']
+        id = 0
         nome = dados['nomeproduto']
         cad = Produto(id,nome)
         cad.cadastroProduto()
