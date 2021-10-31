@@ -2,11 +2,8 @@ from flask import json
 from flask.json import jsonify
 from flask import Flask, request
 from domain.doador import Doador
-<<<<<<< HEAD
 from domain.doacao import Doacao
 
-=======
->>>>>>> 2a4180095fc65c41d5abeefb66f3896ced22b835
 from domain.produto import Produto
 
 
@@ -48,7 +45,7 @@ def runApplication():
         cad.cadastroDoacao()
         return "teste"
 
-# Rotas para doacao ------------------------------------------
+    # Rotas para doacao ------------------------------------------
 
 
     @app.route('/api/v1/doacao/listar',methods=['GET'])
@@ -59,9 +56,13 @@ def runApplication():
     @app.route('/api/v1/doacao/cadastro',methods=['POST'])
     def cadastroDoacao():
         dados = request.get_json()
-        id = 0
-        bloco = dados['bloco_apartamento']
-        cad = Produto(id,bloco)
-        cad.cadastroDoador()
-        return "teste"
+        idproduto = dados['idproduto']
+        iddoador = dados['iddoador']
+        quantidade = dados['quantidade']
+        cad = Doacao(idproduto, iddoador, quantidade)
+        cad.cadastroDoacao()
+        return "cadastrado com sucesso"
+
+
+        
     app.run()
