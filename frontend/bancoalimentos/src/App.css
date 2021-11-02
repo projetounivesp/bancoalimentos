@@ -37,10 +37,9 @@
   }
 }
 
-
-.title{
+.title {
   text-align: left;
-  font-size: 15pt!important;
+  font-size: 15pt !important;
   margin-left: 10px;
   color: #666;
 }
@@ -48,77 +47,142 @@
 .ali-doados-24,
 .ali-doados-in,
 .ali-retiradas-24,
-.ali-retiradas-in{
-  width:24vw;
-  height:5vh;
-  padding: 10px;
+.ali-retiradas-in {
+  width: 24.5vw;
+  padding: 20px;
   margin: 5px;
+  text-align: left;
+  font-size: 15pt;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: row;
 }
-.ali-doados-24{
-  background-color: rgb(0,163,186);
+.ali-doados-24 {
+  background-color: rgb(0, 163, 186);
 }
-.ali-doados-in{
+.ali-doados-in {
   background-color: rgb(0, 169, 58);
 }
-.ali-retiradas-24{
+.ali-retiradas-24 {
   background-color: rgb(255, 194, 0);
 }
-.ali-retiradas-in{
-  background-color: rgb(255,50,68);
+.ali-retiradas-in {
+  background-color: rgb(255, 50, 68);
+}
+.linha-header {
+  display: flex;
+  flex-direction: column;
 }
 
-.area{
+.icon-header {
+  flex: 1;
+  height: 10vh;
+  padding: 10px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.area {
   display: flex;
   flex-direction: row;
 }
 
-.content{
-  padding:10px;
-  width:70vw;
-  height: 50vh;
+.content {
+  padding: 10px;
+  width: 70vw;
   border: silver 1px solid;
   margin: 5px;
 }
-.display-title{
+.display-title {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
-.left{
+.left {
   flex: 1;
   text-align: left;
 }
 
-
-.display{
+.display {
   display: flex;
   flex-direction: row;
 }
 
-.buttons{
-  padding:10px;
-  width:30vw;
+.display-title {
+  border-bottom: 1px solid #ddd;
+}
+
+.buttons {
+  padding: 10px;
+  width: 30vw;
   height: 50vh;
   border: silver 1px solid;
   margin: 5px;
   display: flex;
   flex-direction: column;
+  font-size: 20pt;
 }
 
-.ret-doa{
-  flex: 1;
-  margin:10px 0px;
-}
-.ret-doa{
-  flex: 1;
-  margin:10px 0px;
-}
-.ret-doa{
-  flex: 1;
-  margin:10px 0px;
-}
-.sobre{
+.ret-doa {
   flex: 1;
   margin: 10px 0px;
+  border: 0px;
+}
+.ret-doa {
+  flex: 1;
+  margin: 10px 0px;
+  border: 0px;
+}
+.ret-doa {
+  flex: 1;
+  margin: 10px 0px;
+  border: 0px;
+}
+.sobre {
+  flex: 1;
+  margin: 10px 0px;
+  border: 0px;
+}
+
+.titulo {
+  font-size: 30pt;
+  border-bottom: 1px solid #ddd;
+}
+.form-display {
+  width: 60%;
+  padding: 20px;
+  text-align: left;
+  margin: auto;
+}
+.form-display label {
+  display: block;
+  font-size: 15pt;
+  padding: 10px;
+}
+.validade label {
+  display: inline-block !important;
+}
+.form-display select {
+  padding: 10px;
+  width: 100%;
+}
+.validade select {
+  width: 14.7%;
+}
+
+.form-display input[type="text"] {
+  padding: 10px;
+  display: block;
+  width: 100%;
+  margin: 20px 0px;
+}
+
+.form-display button {
+  padding: 20px;
+  background-color: darkred;
+  color: #fff;
+  border: 0px;
+  margin-left: 40%;
+  margin-top: 20px;
 }

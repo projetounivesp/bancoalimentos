@@ -5,11 +5,10 @@ import pymysql
 
 
 class Doacao:
-    def __init__(self, idproduto=None, iddoador=None, quantidade=None, datadoacao=None):
+    def __init__(self, idproduto=None, iddoador=None, quantidade=None):
         self.idproduto = idproduto
         self.iddoador = iddoador
         self.quantidade = quantidade
-        self.datadoacao = datadoacao
 
         self.conn = pymysql.connect(host='localhost',
                                     user='root',
@@ -21,15 +20,15 @@ class Doacao:
     def cadastroDoacao(self):
         try:
             with self.conn.cursor() as cur:
-                sql = "INSERT INTO 'doacao' ('idproduto', 'iddoador', 'quantidade', 'datadoacao') VALUES(%s, %s, %i, %s)"
+                sql = "INSERT INTO `doacao`(`idproduto`, `iddoador`, `quantidade`)VALUES(%s, %s, %s)"
                 cur.execute(sql, (self.idproduto, self.iddoador,
-                            self.quantidade, self.datadoacao))
+                            self.quantidade))
                 self.conn.commit()
-            except:
-                print("Erro ao tentar cadastrar os dados")
-                traceback.print_exc()
-            finally:
-                self.conn.close()
+        except:
+            print("Erro ao tentar cadastrar os dados")
+            traceback.print_exc()
+        finally:
+            self.conn.close()
 
     def listarDoacao(self):
         try:
