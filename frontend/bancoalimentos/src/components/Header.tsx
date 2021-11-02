@@ -4,10 +4,10 @@ import { pathURL } from "../config/settings";
 
 export default function Header(){
 
-    const[total, setTotal] = useState([]);
+    const[total, setTotal] = useState(0);
     
     useEffect(()=>{
-        fetch(pathURL,{
+        fetch(`${pathURL}/doacao/totaldoadoinicio`,{
             method : "GET",
             mode: 'cors',
             headers:{
@@ -17,7 +17,8 @@ export default function Header(){
         })
         .then((response) => response.json())
         .then((data) =>{
-            console.log(data)
+            setTotal(data[0].total)
+            console.log(data[0].total)
         })
         .catch((error)=>console.error(`Erro ao tentar carregar o total doado desde o início da campanha -> ${error}`))
         },[])

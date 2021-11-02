@@ -1,5 +1,6 @@
 from flask import json
 from flask.json import jsonify
+from flask_cors import CORS
 from flask import Flask, request
 from domain.doador import Doador
 from domain.doacao import Doacao
@@ -9,6 +10,9 @@ from domain.produto import Produto
 
 def runApplication():
     app = Flask(__name__)
+    CORS(app)
+    cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+
     app.config['DEBUG'] = True
 
     # Rotas para produtos---------------------------------------
@@ -62,4 +66,10 @@ def runApplication():
         cad = Doacao(idproduto, iddoador, quantidade)
         cad.cadastroDoacao()
         return "Cadastro realizados com sucesso"
+
+    @app.route('/api/v1/doacao/totaldoadoinicio', methods=['GET'])
+    def totalDoacaoInicio():
+        result = Doacao()
+        return result.totalDoacaoInicio()
+
     app.run()
