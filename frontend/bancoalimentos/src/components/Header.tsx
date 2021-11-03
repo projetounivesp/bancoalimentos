@@ -4,8 +4,9 @@ import { pathURL } from "../config/settings";
 
 export default function Header(){
 
-    const[total, setTotal] = useState(0);
-    
+    const[doacaoInicio, setDoacaoInicio] = useState(0);
+    const[doacao24,setDoacao24] = useState(0);
+
     useEffect(()=>{
         fetch(`${pathURL}/doacao/totaldoadoinicio`,{
             method : "GET",
@@ -17,11 +18,31 @@ export default function Header(){
         })
         .then((response) => response.json())
         .then((data) =>{
-            setTotal(data[0].total)
+            setDoacaoInicio(data[0].total)
             console.log(data[0].total)
         })
         .catch((error)=>console.error(`Erro ao tentar carregar o total doado desde o início da campanha -> ${error}`))
+
+
+
+        // ---------- Total doado em 24 horas
+
+        fetch(`${pathURL}/doacao/totaldoado24`,{
+            method : "GET",
+            mode: 'cors',
+            headers:{
+                accept:'application/json',
+                'content-type':'application/json'
+            }
+        })
+        .then((response) => response.json())
+        .then((dataDt24) =>{
+            setDoacao24(dataDt24[0].total)
+            console.log(dataDt24[0].total)
+        })
+        .catch((error)=>console.error(`Erro ao tentar carregar o total doado desde o início da campanha -> ${error}`))
         },[])
+
     return(
         <div>
             <div className="cx-title">
@@ -32,7 +53,7 @@ export default function Header(){
                 
                 <div className="ali-doados-24">
                     <div className="linha-header">
-                        <div className="num-ali">36</div>
+                        <div className="num-ali">{doacao24}</div>
                         <div className="text-ali">Alimentos doados nas<br/>últimas 24 horas</div>
                     </div>
                     <icons.IoBagOutline className="icon-header"/>
@@ -40,7 +61,7 @@ export default function Header(){
 
                 <div className="ali-doados-in">
                      <div className="linha-header">
-                        <div className="num-ali">{total}</div>
+                        <div className="num-ali">{doacaoInicio}</div>
                         <div className="text-ali">Alimentos doados<br/>desde o início da campanha</div>
                     </div>
                     <icons.IoPodiumOutline className="icon-header"/>

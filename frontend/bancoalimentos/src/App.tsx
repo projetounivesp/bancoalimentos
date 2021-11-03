@@ -1,10 +1,10 @@
 import './App.css';
 import './bootstrap/css/bootstrap.min.css';
-import Content from './components/Content';
+// import Content from './components/Content';
 import Buttons from './components/Buttons';
 import Header from './components/Header';
 import Doacao from './components/Doacao';
-import Retirada from './components/Retirada';
+// import Retirada from './components/Retirada';
 
 function App() {
   return (

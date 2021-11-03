@@ -72,4 +72,9 @@ def runApplication():
         result = Doacao()
         return result.totalDoacaoInicio()
 
+    @app.route('/api/v1/doacao/totaldoado24', methods=['GET'])
+    def totalDoacao24():
+        result = Doacao()
+        return result.totalDoacao24()
+
     app.run()

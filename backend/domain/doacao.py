@@ -45,6 +45,18 @@ class Doacao:
         try:
             with self.conn.cursor() as cur:
                 cur.execute(
+                    "select sum(quantidade) as total from doacao")
+                result = cur.fetchall()
+                return jsonify(result)
+        except:
+            print("Erro ao tentar calcular o total de doacoes")
+        finally:
+            self.conn.close()
+
+    def totalDoacao24(self):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute(
                     "select sum(quantidade) as total from doacao where datadoacao between curdate() - dayofmonth(curdate()) - 1 and curdate()")
                 result = cur.fetchall()
                 return jsonify(result)
