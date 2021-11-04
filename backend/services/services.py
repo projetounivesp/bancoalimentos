@@ -74,7 +74,7 @@ def runApplication():
     @app.route('/api/v1/entrada/cadastro',methods=['POST'])
     def cadastroEntrada():
         dados = request.get_json()
-        idproduto = dados['idproduto']
+        idproduto = dados['idproduto']git 
         datavalidade = dados['datavalidade']
         cad = Entrada(idproduto, datavalidade)
         cad.cadastroEntrada()
