@@ -3,9 +3,9 @@ from flask.json import jsonify
 from flask import Flask, request
 from domain.doador import Doador
 from domain.doacao import Doacao
-
+from domain.entrada import Entrada
 from domain.produto import Produto
-
+from domain.estoque import Estoque
 
 def runApplication():
     app = Flask(__name__)
@@ -63,6 +63,38 @@ def runApplication():
         cad.cadastroDoacao()
         return "cadastrado com sucesso"
 
+# Rotas para Entrada ------------------------------------------
 
-        
+
+    @app.route('/api/v1/entrada/listar',methods=['GET'])
+    def listarEntrada():
+        result = Entrada()
+        return result.listarEntrada()
+
+    @app.route('/api/v1/entrada/cadastro',methods=['POST'])
+    def cadastroEntrada():
+        dados = request.get_json()
+        idproduto = dados['idproduto']
+        datavalidade = dados['datavalidade']
+        cad = Entrada(idproduto, datavalidade)
+        cad.cadastroEntrada()
+        return "cadastrado com sucesso"
+
+    # Rotas para Estoque ------------------------------------------
+
+
+    @app.route('/api/v1/estoque/listar',methods=['GET'])
+    def listarEstoque():
+        result = Estoque()
+        return result.listarEstoque()
+
+    @app.route('/api/v1/estoque/cadastro',methods=['POST'])
+    def cadastroEstoque():
+        dados = request.get_json()
+        identrada = dados['identrada']
+        quantidade = dados['quantidade']
+        cad = Estoque(identrada, quantidade)
+        cad.cadastroEstoque()
+        return "cadastrado com sucesso"
+    
     app.run()
