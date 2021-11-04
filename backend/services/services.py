@@ -18,12 +18,12 @@ def runApplication():
     # Rotas para produtos---------------------------------------
 
     @app.route('/api/v1/produto/listar', methods=['GET'])
-    def listarprodutos():
+    def listarProdutos():
         result = Produto()
         return result.listarProdutos()
 
     @app.route('/api/v1/produto/cadastro', methods=['POST'])
-    def cadastroproduto():
+    def cadastroProduto():
         dados = request.get_json()
         id = 0
         nome = dados['nomeproduto']
@@ -34,12 +34,12 @@ def runApplication():
     # Rotas para doador ------------------------------------------
 
     @app.route('/api/v1/doador/listar', methods=['GET'])
-    def listardoador():
+    def listarDoador():
         result = Doador()
         return result.listarDoador()
 
     @app.route('/api/v1/doador/cadastro', methods=['POST'])
-    def cadastrodoador():
+    def cadastroDoador():
         dados = request.get_json()
         produto = dados['idproduto']
         doador = dados['iddoador']

@@ -1,7 +1,36 @@
 import React, { useEffect, useState } from "react";
+import { pathURL } from "../config/settings";
+
+
+var produto = "";
+var dia = "";
+var mes = "";
+var ano = "";
+var qtd = "";
+var doador = 1;
+
 
 export default function Doacao(){
 
+    const[frmProduto, setFrmProduto] = useState('');
+
+
+    const[listaProdutos, setListaProdutos] = useState([
+        {
+            idproduto:0,
+            nomeproduto:'adicionar'
+        }
+    ])
+    useEffect(()=>{
+        fetch(`${pathURL}/produto/listar`)
+        .then((response) => response.json())
+        .then((produtos) =>{
+
+            setListaProdutos(produtos)
+            console.log(produtos)
+        })
+        .catch((error)=>console.error(`Erro ao tentar carregar a lista de produtos -> ${error}`))
+    },[])
 
     return(
         <div className="content">
@@ -12,6 +41,13 @@ export default function Doacao(){
                 <label>Selecione o produto que deseja doar</label>
                 <select>
                     <option>Selecione</option>
+                    {
+                        listaProdutos.map((itens, ix)=>(
+                            <option key={ix} value={itens.idproduto}>{itens.nomeproduto}</option>
+                        ))
+                    }
+                    
+                    <option value="adicionar">Adicionar Produto</option>
                 </select>
                 <label>Selecione a data de validade do produto</label>
                 <div className="validade">
@@ -95,4 +131,28 @@ export default function Doacao(){
 
         </div>
     )
+}
+
+function realizarDoacao(){
+
+    // fetch(`${pathURL}/produto/cadastro`,{
+    //     method : "POST",
+    //     mode: 'cors',
+    //     headers:{
+    //         accept:'application/json',
+    //         'content-type':'application/json'
+    //     },
+    //     body:JSON.stringify({
+
+    //     })
+    // })
+    // .then((response) => response.json())
+    // .then((data) =>{
+    //     setListaProdutos(data)
+    //     console.log(data)
+    // })
+    // .catch((error)=>console.error(`Erro ao tentar carregar a lista de produtos -> ${error}`))
+
+
+
 }
