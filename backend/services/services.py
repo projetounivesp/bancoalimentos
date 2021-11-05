@@ -7,10 +7,6 @@ from flask_cors import CORS
 from flask import Flask, request
 from domain.doador import Doador
 from domain.doacao import Doacao
-<< << << < HEAD
-
-== == == =
->>>>>> > 3b223dd61896e5025ed812c7a49617aac2952557
 
 
 def runApplication():
@@ -81,11 +77,6 @@ def runApplication():
     def totalDoacao24():
         result = Doacao()
         return result.totalDoacao24()
-
-    cad = Doacao(idproduto, iddoador, quantidade)
-    cad.cadastroDoacao()
-    return "cadastrado com sucesso"
-
 # Rotas para Entrada ------------------------------------------
 
     @app.route('/api/v1/entrada/listar', methods=['GET'])
@@ -96,7 +87,7 @@ def runApplication():
     @app.route('/api/v1/entrada/cadastro', methods=['POST'])
     def cadastroEntrada():
         dados = request.get_json()
-        idproduto = dados['idproduto']git
+        idproduto = dados['idproduto']
         datavalidade = dados['datavalidade']
         cad = Entrada(idproduto, datavalidade)
         cad.cadastroEntrada()
