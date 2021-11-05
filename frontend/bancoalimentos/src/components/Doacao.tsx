@@ -13,8 +13,6 @@ var doador = 1;
 export default function Doacao(){
 
     const[frmProduto, setFrmProduto] = useState('');
-
-
     const[listaProdutos, setListaProdutos] = useState([
         {
             idproduto:0,
