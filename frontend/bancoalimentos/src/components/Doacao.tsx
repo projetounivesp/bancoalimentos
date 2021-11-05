@@ -2,17 +2,25 @@ import React, { useEffect, useState } from "react";
 import { pathURL } from "../config/settings";
 
 
-var produto = "";
-var dia = "";
-var mes = "";
-var ano = "";
-var qtd = "";
-var doador = 1;
-
+let produto = "";
+let dia = "";
+let mes = "";
+let ano = "";
+let qtd = "";
+let doador = '1';
+let datavalidade = "";
 
 export default function Doacao(){
 
-    const[frmProduto, setFrmProduto] = useState('');
+    const[frmProduto, setFrmProduto] = useState('Selecione');
+    const[frmDia, setFrmDia] = useState('1');
+    const[frmMes, setFrmMes] = useState('Janeiro');
+    const[frmAno, setFrmAno] = useState('2020');
+    const[frmQtd, setFrmQtd] = useState('1');
+    const[frmDoador, setFrmDoador] = useState('');
+    
+
+
     const[listaProdutos, setListaProdutos] = useState([
         {
             idproduto:0,
@@ -35,9 +43,9 @@ export default function Doacao(){
             <p className="titulo">
                 Realizar Doação
             </p>
-            <form className="form-display">
+            <div id="form" className="form-display">
                 <label>Selecione o produto que deseja doar</label>
-                <select>
+                <select defaultValue={frmProduto} onChange={e=>setFrmProduto(e.currentTarget.value)}>
                     <option>Selecione</option>
                     {
                         listaProdutos.map((itens, ix)=>(
@@ -50,7 +58,7 @@ export default function Doacao(){
                 <label>Selecione a data de validade do produto</label>
                 <div className="validade">
                     <label>Dia:</label>
-                    <select>
+                    <select defaultValue={frmDia} onChange={e=>setFrmDia(e.currentTarget.value)}>
                      <option value="1">1</option>
                      <option value="2">2</option>
                      <option value="3">3</option>
@@ -86,7 +94,7 @@ export default function Doacao(){
                     </select>
 
                     <label>Mês:</label>
-                    <select>
+                    <select defaultValue={frmMes} onChange={e=>setFrmMes(e.currentTarget.value)}>
                         <option value="1">Janeiro</option>
                         <option value="2">Fevereiro</option>
                         <option value="3">Março</option>
@@ -102,7 +110,8 @@ export default function Doacao(){
                     </select>
                     
                     <label>Ano:</label>
-                    <select>
+                    <select defaultValue={frmAno} onChange={e=>setFrmAno(e.currentTarget.value)}>
+                       
                         <option value="2020">2020</option>
                         <option value="2021">2021</option>
                         <option value="2022">2022</option>
@@ -112,7 +121,7 @@ export default function Doacao(){
                     </select>
                     
                     <label>Quantidade:</label>
-                        <select>
+                        <select defaultValue={frmQtd} onChange={e=>setFrmQtd(e.currentTarget.value)}>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -122,10 +131,19 @@ export default function Doacao(){
                 </div>
 
                 <label>Se você gostaria de identificar adicione o seu bloco e apartamento</label>
-                <input type="text" name="txtdoador" id="txtdoador" />
+                <input type="text" name="txtdoador" id="txtdoador" defaultValue={frmDoador} onChange={e=>setFrmDoador(e.currentTarget.value)}/>
 
-                <button id="btnRealizarDoacao">Realizar a doação</button>
-            </form>
+                <button id="btnRealizarDoacao" onClick={()=>{
+                                                produto = frmProduto;
+                                                dia = frmDia;
+                                                mes = frmMes;
+                                                ano = frmAno;
+                                                qtd = frmQtd;
+                                                doador = frmDoador;
+                                                datavalidade = `${ano}-${mes}-${dia}`;
+                                                realizarDoacao()}}>Realizar a doação</button>
+                
+            </div>
 
         </div>
     )
@@ -133,23 +151,54 @@ export default function Doacao(){
 
 function realizarDoacao(){
 
-    // fetch(`${pathURL}/produto/cadastro`,{
-    //     method : "POST",
-    //     mode: 'cors',
-    //     headers:{
-    //         accept:'application/json',
-    //         'content-type':'application/json'
-    //     },
-    //     body:JSON.stringify({
+    // Realizando o cadastro de uma nova entrada
 
-    //     })
-    // })
-    // .then((response) => response.json())
-    // .then((data) =>{
-    //     setListaProdutos(data)
-    //     console.log(data)
-    // })
-    // .catch((error)=>console.error(`Erro ao tentar carregar a lista de produtos -> ${error}`))
+    fetch(`${pathURL}/entrada/cadastro`,{
+        method : "POST",
+        mode: 'cors',
+        headers:{
+            accept:'application/json',
+            'content-type':'application/json'
+        },
+        body:JSON.stringify({
+            idproduto: produto,
+            datavalidade:datavalidade
+        })
+    })
+    .then((response) => response.json())
+    .then((data) =>{
+       console.log(data)
+    })
+    .catch((error)=>console.error(`Erro ao tentar cadastrar uma nova entrada -> ${error}`))
+
+
+
+
+
+
+
+    // Realizando o cadastro de uma nova doação
+
+
+    fetch(`${pathURL}/doacao/cadastro`,{
+        method : "POST",
+        mode: 'cors',
+        headers:{
+            accept:'application/json',
+            'content-type':'application/json'
+        },
+        body:JSON.stringify({
+            idproduto: produto,
+            iddoador:doador,
+            quantidade:qtd
+        })
+    })
+    .then((response) => response.json())
+    .then((data) =>{
+       alert("Doação cadastrada.");
+       console.log(data)
+    })
+    .catch((error)=>console.error(`Erro ao tentar cadastrar uma nova doação -> ${error}`))
 
 
 

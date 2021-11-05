@@ -66,7 +66,7 @@ def runApplication():
 
         cad = Doacao(idproduto, iddoador, quantidade)
         cad.cadastroDoacao()
-        return "Cadastro realizados com sucesso"
+        return jsonify(rs={"resultado": "Cadastro realizados com sucesso"})
 
     @app.route('/api/v1/doacao/totaldoadoinicio', methods=['GET'])
     def totalDoacaoInicio():
