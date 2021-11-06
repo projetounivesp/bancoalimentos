@@ -1,6 +1,6 @@
 import './App.css';
 import './bootstrap/css/bootstrap.min.css';
-// import Content from './components/Content';
+import Content from './components/Content';
 import Buttons from './components/Buttons';
 import Header from './components/Header';
 import Doacao from './components/Doacao';
@@ -11,8 +11,8 @@ function App() {
     <div className="App">
       <Header/>
       <div className="display">
-        {/* <Content/> */}
-        <Doacao/>
+        <Content/>
+        {/* <Doacao/> */}
         {/* <Retirada/> */}
         <Buttons/>
       </div>

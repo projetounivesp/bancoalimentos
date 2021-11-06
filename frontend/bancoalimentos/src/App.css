@@ -186,3 +186,23 @@
   margin-left: 40%;
   margin-top: 20px;
 }
+.stock {
+  text-align: left;
+}
+.nomeproduto {
+  padding: 10px;
+}
+
+.totalestoque {
+  display: flex;
+  flex-direction: row;
+}
+.barra,
+total-estoque {
+  flex: 1;
+  border: 1px solid red;
+}
+
+.total-estoque {
+  padding-left: 10px;
+}

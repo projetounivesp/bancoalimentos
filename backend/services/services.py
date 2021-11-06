@@ -1,3 +1,4 @@
+from domain.retirada import Retirada
 from domain.estoque import Estoque
 from domain.produto import Produto
 from domain.entrada import Entrada
@@ -91,7 +92,7 @@ def runApplication():
         datavalidade = dados['datavalidade']
         cad = Entrada(idproduto, datavalidade)
         cad.cadastroEntrada()
-        return "cadastrado com sucesso"
+        return jsonify(rs={"resultado": "Cadastro realizados com sucesso"})
 
     # Rotas para Estoque ------------------------------------------
 
@@ -100,6 +101,11 @@ def runApplication():
         result = Estoque()
         return result.listarEstoque()
 
+    @app.route('/api/v1/estoque/listarprodutoestoque', methods=['GET'])
+    def listarProdutoEstoque():
+        result = Estoque()
+        return result.listarProdutoEstoque()
+
     @app.route('/api/v1/estoque/cadastro', methods=['POST'])
     def cadastroEstoque():
         dados = request.get_json()
@@ -107,6 +113,22 @@ def runApplication():
         quantidade = dados['quantidade']
         cad = Estoque(identrada, quantidade)
         cad.cadastroEstoque()
-        return "cadastrado com sucesso"
+        return jsonify(rs={"resultado": "Cadastro realizados com sucesso"})
+
+    # Rotas para Retirada ------------------------------------------
+
+    @app.route('/api/v1/retirada/listar', methods=['GET'])
+    def listarRetirada():
+        result = Retirada()
+        return result.listarRetirada()
+
+    @app.route('/api/v1/retirada/cadastro', methods=['POST'])
+    def cadastroRetirada():
+        dados = request.get_json()
+        idproduto = dados['idproduto']
+        quantidade = dados['quantidade']
+        cad = Retirada(idproduto, quantidade)
+        cad.cadastroRetirada()
+        return jsonify(rs={"resultado": "Cadastro realizados com sucesso"})
 
     app.run()
