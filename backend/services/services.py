@@ -14,7 +14,7 @@ def runApplication():
     app = Flask(__name__)
     CORS(app)
     cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
-
+    qtdEstoque = 0
     app.config['DEBUG'] = True
 
     # Rotas para produtos---------------------------------------
@@ -91,8 +91,11 @@ def runApplication():
         idproduto = dados['idproduto']
         datavalidade = dados['datavalidade']
         cad = Entrada(idproduto, datavalidade)
-        cad.cadastroEntrada()
-        return jsonify(rs={"resultado": "Cadastro realizados com sucesso"})
+        rs = cad.cadastroEntrada()
+        print(rs)
+        est = Estoque(rs, qtdEstoque)
+        est.cadastroEstoque()
+        return jsonify(rs={"resultado": "Cadastro realizado"})
 
     # Rotas para Estoque ------------------------------------------
 
@@ -130,5 +133,15 @@ def runApplication():
         cad = Retirada(idproduto, quantidade)
         cad.cadastroRetirada()
         return jsonify(rs={"resultado": "Cadastro realizados com sucesso"})
+
+    @app.route('/api/v1/retirada/totaldoadoinicio', methods=['GET'])
+    def totalRetiradaInicio():
+        result = Retirada()
+        return result.totalRetiradaInicio()
+
+    @app.route('/api/v1/retirada/totaldoado24', methods=['GET'])
+    def totalRetirada24():
+        result = Retirada()
+        return result.totalRetirada24()
 
     app.run()

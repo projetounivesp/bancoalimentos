@@ -7,6 +7,14 @@ export default function Header(){
     const[doacaoInicio, setDoacaoInicio] = useState(0);
     const[doacao24,setDoacao24] = useState(0);
 
+
+    // -----------retirada
+
+    const[retiradaInicio, setRetiradaInicio] = useState(0);
+    const[retirada24,setRetirada24] = useState(0);
+
+   //----------------requisições doação
+
     useEffect(()=>{
         fetch(`${pathURL}/doacao/totaldoadoinicio`,{
             method : "GET",
@@ -41,6 +49,47 @@ export default function Header(){
             console.log(dataDt24[0].total)
         })
         .catch((error)=>console.error(`Erro ao tentar carregar o total doado desde o início da campanha -> ${error}`))
+
+
+
+        //----------------requisições retirada
+
+        fetch(`${pathURL}/retirada/totaldoadoinicio`,{
+            method : "GET",
+            mode: 'cors',
+            headers:{
+                accept:'application/json',
+                'content-type':'application/json'
+            }
+        })
+        .then((response) => response.json())
+        .then((data) =>{
+            setRetiradaInicio(data[0].total)
+            console.log(data[0].total)
+        })
+        .catch((error)=>console.error(`Erro ao tentar carregar o total doado desde o início da campanha -> ${error}`))
+
+
+
+        // ---------- Total doado em 24 horas
+
+        fetch(`${pathURL}/retirada/totaldoado24`,{
+            method : "GET",
+            mode: 'cors',
+            headers:{
+                accept:'application/json',
+                'content-type':'application/json'
+            }
+        })
+        .then((response) => response.json())
+        .then((dataRt24) =>{
+            setRetirada24(dataRt24[0].total)
+            console.log(dataRt24[0].total)
+        })
+        .catch((error)=>console.error(`Erro ao tentar carregar o total doado desde o início da campanha -> ${error}`))
+
+
+
         },[])
 
     return(
@@ -69,7 +118,7 @@ export default function Header(){
 
                 <div className="ali-retiradas-24">
                     <div className="linha-header">
-                        <div className="num-ali">36</div>
+                        <div className="num-ali">{retirada24}</div>
                         <div className="text-ali">Doações retiradas nas <br/>últimas 24 horas</div>
                     </div>
                     <icons.IoBasketOutline className="icon-header"/>
@@ -77,7 +126,7 @@ export default function Header(){
 
                 <div className="ali-retiradas-in">
                     <div className="linha-header">
-                        <div className="num-ali">250</div>
+                        <div className="num-ali">{retiradaInicio}</div>
                         <div className="text-ali">Doações retiradas<br/>desde o início da campanha</div>
                     </div>
                     <icons.IoPodiumOutline className="icon-header"/>

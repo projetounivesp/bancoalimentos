@@ -40,3 +40,27 @@ class Retirada:
             print("Erro ao tentar cadastrar os dados")
         finally:
             self.conn.close()
+
+    def totalRetiradaInicio(self):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute(
+                    "select sum(quantidade) as total from retirada")
+                result = cur.fetchall()
+                return jsonify(result)
+        except:
+            print("Erro ao tentar calcular o total de doacoes")
+        finally:
+            self.conn.close()
+
+    def totalRetirada24(self):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute(
+                    "select sum(quantidade) as total from retirada where dataretirada between curdate() - dayofmonth(curdate()) - 1 and curdate()")
+                result = cur.fetchall()
+                return jsonify(result)
+        except:
+            print("Erro ao tentar calcular o total de doacoes")
+        finally:
+            self.conn.close()

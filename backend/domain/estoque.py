@@ -7,7 +7,7 @@ import pymysql
 class Estoque:
     def __init__(self, identrada=None, quantidade=None):
         self.identrada = identrada
-        self.quantdade = quantidade
+        self.quantidade = quantidade
 
         self.conn = pymysql.connect(host='localhost',
                                     user='root',
