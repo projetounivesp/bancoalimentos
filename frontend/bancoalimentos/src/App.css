@@ -128,21 +128,31 @@
   flex: 1;
   margin: 10px 0px;
   border: 0px;
+  background-color: rgb(255, 194, 0);
+  text-align: left;
 }
-.ret-doa {
+
+.rea-doa {
   flex: 1;
   margin: 10px 0px;
   border: 0px;
+  background-color: rgb(0, 169, 58);
+  text-align: left;
 }
-.ret-doa {
+.tela-inicial {
   flex: 1;
   margin: 10px 0px;
   border: 0px;
+  color: #fff !important;
+  background-color: rgb(255, 50, 68);
+  text-align: left;
 }
 .sobre {
   flex: 1;
   margin: 10px 0px;
   border: 0px;
+  background-color: rgb(0, 163, 186);
+  text-align: left;
 }
 
 .titulo {
@@ -205,4 +215,12 @@ total-estoque {
 
 .total-estoque {
   padding-left: 10px;
+}
+
+.icon-button {
+  height: 10vh;
+  padding: 10px;
+  color: #000;
+  font-size: 50pt;
+  margin-right: 50px;
 }

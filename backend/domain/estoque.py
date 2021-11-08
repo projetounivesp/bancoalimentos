@@ -42,7 +42,8 @@ class Estoque:
     def listarProdutoEstoque(self):
         try:
             with self.conn.cursor() as cur:
-                cur.execute("select pr.nomeproduto, sum(es.quantidade) as total from produto pr inner join entrada en on pr.idproduto=en.idproduto inner join estoque es on en.identrada = es.identrada group by en.idproduto")
+                # cur.execute("select pr.nomeproduto, sum(es.quantidade) as total from produto pr inner join entrada en on pr.idproduto=en.idproduto inner join estoque es on en.identrada = es.identrada group by en.idproduto")
+                cur.execute("SELECT * FROM bancoalimentos.estoque_atual")
                 result = cur.fetchall()
                 return jsonify(result)
         except:

@@ -14,7 +14,6 @@ def runApplication():
     app = Flask(__name__)
     CORS(app)
     cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
-    qtdEstoque = 0
     app.config['DEBUG'] = True
 
     # Rotas para produtos---------------------------------------
@@ -64,7 +63,6 @@ def runApplication():
         idproduto = dados['idproduto']
         iddoador = dados['iddoador']
         quantidade = dados['quantidade']
-
         cad = Doacao(idproduto, iddoador, quantidade)
         cad.cadastroDoacao()
         return jsonify(rs={"resultado": "Cadastro realizados com sucesso"})
@@ -90,10 +88,11 @@ def runApplication():
         dados = request.get_json()
         idproduto = dados['idproduto']
         datavalidade = dados['datavalidade']
+        quantidade = dados['quantidade']
         cad = Entrada(idproduto, datavalidade)
         rs = cad.cadastroEntrada()
-        print(rs)
-        est = Estoque(rs, qtdEstoque)
+        print("codigo entrada -> %d", rs)
+        est = Estoque(rs, quantidade)
         est.cadastroEstoque()
         return jsonify(rs={"resultado": "Cadastro realizado"})
 

@@ -22,7 +22,8 @@ class Entrada:
                 sql = "INSERT INTO `entrada` (`idproduto`, `datavalidade`)VALUES(%s, %s)"
                 cur.execute(sql, (self.idproduto, self.datavalidade))
                 self.conn.commit()
-                return cur.execute('select identrada from entrada order by identrada desc limit 0,1')
+                entrada_id = cur.lastrowid
+                return entrada_id
 
         except:
             print("Erro ao tentar cadastrar os dados")

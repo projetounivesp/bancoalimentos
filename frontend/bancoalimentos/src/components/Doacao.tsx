@@ -122,16 +122,30 @@ export default function Doacao(){
                     
                     <label>Quantidade:</label>
                         <select defaultValue={frmQtd} onChange={e=>setFrmQtd(e.currentTarget.value)}>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
                         </select>
                 </div>
 
-                <label>Se você gostaria de identificar adicione o seu bloco e apartamento</label>
-                <input type="text" name="txtdoador" id="txtdoador" defaultValue={frmDoador} onChange={e=>setFrmDoador(e.currentTarget.value)}/>
+                {/* <label>Se você gostaria de identificar adicione o seu bloco e apartamento</label>
+                <input type="text" name="txtdoador" id="txtdoador" defaultValue={frmDoador} onChange={e=>setFrmDoador(e.currentTarget.value)}/> */}
 
                 <button id="btnRealizarDoacao" onClick={()=>{
                                                 produto = frmProduto;
@@ -150,31 +164,6 @@ export default function Doacao(){
 }
 
 function realizarDoacao(){
-
-    // Realizando o cadastro de uma nova entrada
-
-    fetch(`${pathURL}/entrada/cadastro`,{
-        method : "POST",
-        mode: 'cors',
-        headers:{
-            accept:'application/json',
-            'content-type':'application/json'
-        },
-        body:JSON.stringify({
-            idproduto: produto,
-            datavalidade:datavalidade
-        })
-    })
-    .then((response) => response.json())
-    .then((data) =>{
-       console.log(data)
-    })
-    .catch((error)=>console.error(`Erro ao tentar cadastrar uma nova entrada -> ${error}`))
-
-
-
-
-
 
 
     // Realizando o cadastro de uma nova doação
@@ -200,6 +189,27 @@ function realizarDoacao(){
     })
     .catch((error)=>console.error(`Erro ao tentar cadastrar uma nova doação -> ${error}`))
 
+
+    // Realizando o cadastro de uma nova entrada
+
+    fetch(`${pathURL}/entrada/cadastro`,{
+        method : "POST",
+        mode: 'cors',
+        headers:{
+            accept:'application/json',
+            'content-type':'application/json'
+        },
+        body:JSON.stringify({
+            idproduto: produto,
+            datavalidade:datavalidade,
+            quantidade:qtd
+        })
+    })
+    .then((response) => response.json())
+    .then((data) =>{
+       console.log(data)
+    })
+    .catch((error)=>console.error(`Erro ao tentar cadastrar uma nova entrada -> ${error}`))
 
 
 }
