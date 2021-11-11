@@ -20,9 +20,9 @@ vencimento de validade.
 
 ### Time de desenvolvimento
 ```
-Tathiane Costa Pereira - Polo
-Edilson Jesus da Silva - Polo
-Eduardo Gonçalves Gama - Polo
+Tathiane Costa Pereira - Polo Jambeiro - São Paulo
+Edilson Jesus da Silva - Polo Jambeiro - São Paulo
+Eduardo Gonçalves Gama - Polo Jambeiro - São Paulo
 Danilo Eiji Ito - Polo Bragança Paulista
 José Ocimar Alves de Freitas - Polo
 ```
