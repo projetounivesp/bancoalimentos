@@ -24,6 +24,6 @@ Tathiane Costa Pereira - Polo Jambeiro - São Paulo
 Edilson Jesus da Silva - Polo Jambeiro - São Paulo
 Eduardo Gonçalves Gama - Polo Jambeiro - São Paulo
 Danilo Eiji Ito - Polo Bragança Paulista
-José Ocimar Alves de Freitas - Polo
+José Ocimar Alves de Freitas - Polo Jambeiro - São Paulo
 ```
 
