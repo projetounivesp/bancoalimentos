@@ -44,6 +44,9 @@ class Doacao:
                 cur.execute(
                     sql, (self.idproduto, self.iddoador, self.quantidade))
                 self.conn.commit()
+                cur.execute("call atualizar_estoque(?,?,?)",
+                            self.idproduto, pymysql.NULL, self.quantidade)
+                self.conn.commit()
         except:
             print("Erro ao tentar cadastrar os dados")
             traceback.print_exc()
@@ -77,7 +80,7 @@ class Doacao:
         try:
             with self.conn.cursor() as cur:
                 cur.execute(
-                    "select sum(quantidade) as total from doacao where date(datadoacao) = curdate()-1")
+                    "select sum(quantidade) as total from doacao where date(datadoacao) = curdate()")
                 result = cur.fetchall()
                 return jsonify(result)
         except:

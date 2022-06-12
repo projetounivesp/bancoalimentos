@@ -1,20 +1,23 @@
+import os
 from domain.retirada import Retirada
 from domain.estoque import Estoque
 from domain.produto import Produto
 from domain.entrada import Entrada
-from flask import json
-from flask.json import jsonify
 from flask_cors import CORS
-from flask import Flask, request
+from flask import Flask, jsonify, request
 from domain.doador import Doador
 from domain.doacao import Doacao
 
 
-def runApplication():
+def main():
     app = Flask(__name__)
     CORS(app)
     cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
     app.config['DEBUG'] = True
+
+    @app.route("/", methods=['GET'])
+    def index():
+        return "Rota de Teste de API"
 
     # Rotas para produtos---------------------------------------
 
@@ -143,4 +146,6 @@ def runApplication():
         result = Retirada()
         return result.totalRetirada24()
 
-    app.run()
+    if __name__ == "__main__":
+        port = int(os.environ.get("PORT", 5000))
+        app.run(host='0.0.0.0', port=port)
